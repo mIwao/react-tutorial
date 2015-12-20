@@ -1,14 +1,15 @@
-var gulp = require('gulp')
-var babel = require('gulp-babel')
+const gulp = require('gulp')
+const babel = require('gulp-babel')
+const del = require('del')
 
-gulp.task('default', ['copy-html', 'copy-js-lib', 'compile'])
+gulp.task('default', ['clean', 'copy-html', 'copy-js-lib', 'compile'])
 
-gulp.task('copy-html', function() {
+gulp.task('copy-html', () => {
   gulp.src('src/*.html')
     .pipe(gulp.dest('public'))
 })
 
-gulp.task('copy-js-lib', function() {
+gulp.task('copy-js-lib', () => {
   gulp.src( [
               'node_modules/react/dist/react.js',
               'node_modules/react-dom/dist/react-dom.js',
@@ -20,11 +21,14 @@ gulp.task('copy-js-lib', function() {
     .pipe(gulp.dest('public/js/lib'))
 })
 
-
-gulp.task('compile', function() {
+gulp.task('compile', () => {
   gulp.src( 'src/js/example.js')
     .pipe(babel({
       presets: ['react']
     }))
     .pipe(gulp.dest('public/js'))
+})
+
+gulp.task('clean', (cb) => {
+  del.sync('public', cb)
 })

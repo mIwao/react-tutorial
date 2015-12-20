@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "del": "^2.2.0",
     "jquery": "^2.1.4",
     "marked": "^0.3.5",
     "react": "^0.14.3",
