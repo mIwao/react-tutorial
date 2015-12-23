@@ -24,7 +24,7 @@ gulp.task('copy-js-lib', () => {
 gulp.task('compile', () => {
   gulp.src( 'src/js/example.js')
     .pipe(babel({
-      presets: ['react']
+      presets: ['react', 'es2015']
     }))
     .pipe(gulp.dest('public/js'))
 })
